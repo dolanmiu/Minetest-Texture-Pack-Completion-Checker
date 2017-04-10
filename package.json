@@ -1,0 +1,58 @@
+{
+  "name": "tiberinus",
+  "version": "1.0.0",
+  "description": "Backend for Fontus portal",
+  "main": "./dist/index.js",
+  "scripts": {
+    "pretest": "rimraf dist && npm run test-tsc",
+    "test-tsc": "tsc -p tsconfig.spec.json",
+    "tsc": "rimraf dist && tsc --p .",
+    "mocha": "mocha './dist/**/*.spec.js' --recursive",
+    "lint": "tslint --project .",
+    "test": "npm run mocha",
+    "prestart": "npm run tsc",
+    "start": "node ./dist/index.js",
+    "e2e": "npm run test-tsc && mocha ./dist/**/*.spec.e2e.js -t 100000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://dolansilicon@bitbucket.org/siliconmarketswebsite/tiberinus.git"
+  },
+  "keywords": [],
+  "dependencies": {
+    "@types/body-parser": "0.0.33",
+    "@types/compression": "0.0.33",
+    "@types/cors": "0.0.33",
+    "@types/express": "^4.0.33",
+    "@types/helmet": "0.0.33",
+    "@types/moment": "^2.13.0",
+    "@types/morgan": "^1.7.32",
+    "@types/node": "^6.0.46",
+    "@types/request": "0.0.33",
+    "@types/winston": "0.0.30",
+    "body-parser": "^1.15.2",
+    "compression": "^1.6.2",
+    "express": "^4.14.0",
+    "github": "^9.2.0",
+    "helmet": "^3.4.0",
+    "morgan": "^1.7.0",
+    "request": "^2.76.0",
+    "rimraf": "^2.5.4",
+    "typescript": "^2.2.2",
+    "winston": "^2.2.0"
+  },
+  "devDependencies": {
+    "@types/chai": "^3.4.34",
+    "@types/mocha": "^2.2.32",
+    "@types/sinon": "^1.16.31",
+    "@types/supertest": "^2.0.0",
+    "chai": "^3.5.0",
+    "mocha": "^3.1.2",
+    "sinon": "^1.17.6",
+    "supertest": "^3.0.0",
+    "tslint": "^5.0.0"
+  },
+  "author": "Silicon Markets",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/siliconmarketswebsite/tiberinus#readme"
+}
