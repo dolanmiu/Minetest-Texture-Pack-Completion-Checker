@@ -8,14 +8,14 @@ export class RepoFileFetcher {
             debug: true,
             protocol: "https",
             headers: {
-                "user-agent": "minetest-texture-pack-badge",
+                "user-agent": "minetest-texture-pack-checker",
             },
             timeout: 5000,
         });
     }
 
-    public fetch(params: GitHubApi.ReposGetContentParams): Promise<GithubFileResponse> {
-        return new Promise<GithubFileResponse>((resolve, reject) => {
+    public fetch(params: GitHubApi.ReposGetContentParams): Promise<Map<string, GithubFile>> {
+        return new Promise<Map<string, GithubFile>>((resolve, reject) => {
             this.githubApi.repos.getContent(params, (err, files: GithubFileResponse) => {
                 if (err !== null) {
                     console.error("something went wrong");
@@ -23,7 +23,11 @@ export class RepoFileFetcher {
                     reject(err);
                     return;
                 }
-                resolve(files);
+                const result = new Map<string, GithubFile>();
+                for (const file of files.data) {
+                    result.set(file.name, file);
+                }
+                resolve(result);
             });
         });
     }

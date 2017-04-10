@@ -15,11 +15,11 @@ export class ReferenceRepo {
             const map = new Map<string, GithubFile>();
 
             this.fileFetcher.fetch({
-                owner: "tobyplowy",
-                repo: "Vanilla-32x32",
+                owner: "SummerFields",
+                repo: "Summerfields-Minetest",
                 path: "",
             }).then((files) => {
-                for (const file of files.data) {
+                for (const file of files.values()) {
                     map.set(file.name, file);
                 }
                 resolve(map);

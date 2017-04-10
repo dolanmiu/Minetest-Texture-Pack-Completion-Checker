@@ -19,7 +19,7 @@ referenceRepo.fetch();
 
 appWrapper.configure((app) => {
     logger.info("Configuring application routes");
-    app.use("/badge", new BadgeRouter(repoFileFetcher, referenceRepo).router);
+    app.use("/", new BadgeRouter(repoFileFetcher, referenceRepo).router);
 });
 
 appWrapper.start();
