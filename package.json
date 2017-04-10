@@ -9,7 +9,6 @@
     "tsc": "rimraf dist && tsc --p .",
     "mocha": "mocha './dist/**/*.spec.js' --recursive",
     "lint": "tslint --project .",
-    "test": "npm run mocha",
     "prestart": "npm run tsc",
     "start": "node ./dist/index.js",
     "e2e": "npm run test-tsc && mocha ./dist/**/*.spec.e2e.js -t 100000"
