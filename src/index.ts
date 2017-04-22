@@ -1,5 +1,6 @@
 import * as logger from "winston";
-import { BadgeRouter } from "./api/badge";
+import { ModRouter } from "./api/mod";
+import { TexturePackRouter } from "./api/texture-pack";
 import { ApplicationWrapper } from "./bootstrap/application-wrapper";
 import { DevelopmentConfig, ProductionConfig } from "./config/index";
 import { ReferenceRepo, RepoFileFetcher } from "./github";
@@ -19,7 +20,8 @@ referenceRepo.fetch();
 
 appWrapper.configure((app) => {
     logger.info("Configuring application routes");
-    app.use("/", new BadgeRouter(repoFileFetcher, referenceRepo).router);
+    app.use("/", new TexturePackRouter(repoFileFetcher, referenceRepo).router);
+    app.use("/mod", new ModRouter(repoFileFetcher, referenceRepo).router);
 });
 
 appWrapper.start();

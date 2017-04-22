@@ -2,7 +2,7 @@ import { Request, Response, Router } from "express";
 import * as request from "request";
 import { ReferenceRepo, RepoFileFetcher } from "../../github";
 
-export class BadgeRouter {
+export class TexturePackRouter {
     public router: Router;
 
     constructor(private repoFileFetcher: RepoFileFetcher, private referenceRepo: ReferenceRepo) {
@@ -30,12 +30,12 @@ export class BadgeRouter {
         });
     }
 
-    private fetchDetails(owner: string, repo: string): Promise<ComputationSummary> {
+    private fetchDetails(owner: string, repo: string, path: string = ""): Promise<ComputationSummary> {
         return new Promise<ComputationSummary>((resolve, reject) => {
             this.repoFileFetcher.fetch({
                 owner: owner,
                 repo: repo,
-                path: "",
+                path: path,
             }).then((files) => {
                 this.referenceRepo.fetch().then((fileMap) => {
                     let successfulFiles: number = 0;
@@ -55,6 +55,8 @@ export class BadgeRouter {
                         missingFiles: missingFiles,
                     });
                 });
+            }).catch((error) => {
+                reject(error);
             });
         });
     }
