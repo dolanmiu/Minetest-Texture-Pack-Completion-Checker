@@ -1,5 +1,5 @@
 import * as logger from "winston";
-import { ModRouter } from "./api/mod";
+import { FarmingRouter } from "./api/farming";
 import { TexturePackRouter } from "./api/texture-pack";
 import { ApplicationWrapper } from "./bootstrap/application-wrapper";
 import { DevelopmentConfig, ProductionConfig } from "./config/index";
@@ -15,13 +15,11 @@ if (process.env.NODE_ENV === "development") {
 
 const appWrapper = new ApplicationWrapper(config);
 const repoFileFetcher = new RepoFileFetcher();
-const referenceRepo = new ReferenceRepo(repoFileFetcher);
-referenceRepo.fetch();
 
 appWrapper.configure((app) => {
     logger.info("Configuring application routes");
-    app.use("/", new TexturePackRouter(repoFileFetcher, referenceRepo).router);
-    app.use("/mod", new ModRouter(repoFileFetcher, referenceRepo).router);
+    app.use("/", new TexturePackRouter(repoFileFetcher).router);
+    app.use("/farming", new FarmingRouter(repoFileFetcher).router);
 });
 
 appWrapper.start();

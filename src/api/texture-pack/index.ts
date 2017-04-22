@@ -4,9 +4,17 @@ import { ReferenceRepo, RepoFileFetcher } from "../../github";
 
 export class TexturePackRouter {
     public router: Router;
+    private referenceRepo: ReferenceRepo;
 
-    constructor(private repoFileFetcher: RepoFileFetcher, private referenceRepo: ReferenceRepo) {
+    constructor(private repoFileFetcher: RepoFileFetcher) {
         this.router = Router();
+        this.referenceRepo = new ReferenceRepo(repoFileFetcher, {
+            owner: "SummerFields",
+            repo: "Summerfields-Minetest",
+            path: "",
+        });
+
+        this.referenceRepo.fetch();
         this.init();
     }
 

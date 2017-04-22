@@ -1,10 +1,11 @@
+import * as GitHubApi from "github";
 import { RepoFileFetcher } from "./";
 
 export class ReferenceRepo {
 
     private filesPromise: Promise<Map<string, GithubFile>>;
 
-    constructor(private fileFetcher: RepoFileFetcher) {
+    constructor(private fileFetcher: RepoFileFetcher, private params: GitHubApi.ReposGetContentParams) {
     }
 
     public fetch(): Promise<Map<string, GithubFile>> {
@@ -14,11 +15,7 @@ export class ReferenceRepo {
         this.filesPromise = new Promise<Map<string, GithubFile>>((resolve, reject) => {
             const map = new Map<string, GithubFile>();
 
-            this.fileFetcher.fetch({
-                owner: "SummerFields",
-                repo: "Summerfields-Minetest",
-                path: "",
-            }).then((files) => {
+            this.fileFetcher.fetch(this.params).then((files) => {
                 for (const file of files.values()) {
                     map.set(file.name, file);
                 }

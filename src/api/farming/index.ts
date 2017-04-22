@@ -2,11 +2,19 @@ import { Request, Response, Router } from "express";
 import * as request from "request";
 import { ReferenceRepo, RepoFileFetcher } from "../../github";
 
-export class ModRouter {
+export class FarmingRouter {
     public router: Router;
+    private referenceRepo: ReferenceRepo;
 
-    constructor(private repoFileFetcher: RepoFileFetcher, private referenceRepo: ReferenceRepo) {
+    constructor(private repoFileFetcher: RepoFileFetcher) {
         this.router = Router();
+        this.referenceRepo = new ReferenceRepo(repoFileFetcher, {
+            owner: "tenplus1",
+            repo: "farming",
+            path: "textures",
+        });
+
+        this.referenceRepo.fetch();
         this.init();
     }
 
@@ -15,8 +23,8 @@ export class ModRouter {
             const owner = req.params.owner as string;
             const repo = req.params.repo as string;
 
-            this.fetchDetails(owner, repo, "textures").then((result) => {
-                request(`https://img.shields.io/badge/texture%20pack%20completion-${result.percentage}%25-green.svg`).pipe(res);
+            this.fetchDetails(owner, repo).then((result) => {
+                request(`https://img.shields.io/badge/farming%20mod%20completion-${result.percentage}%25-green.svg`).pipe(res);
             }).catch((error) => {
                 res.status(400).json({ message: `${repo} is not a mod!` });
             });
@@ -26,7 +34,7 @@ export class ModRouter {
             const owner = req.params.owner as string;
             const repo = req.params.repo as string;
 
-            this.fetchDetails(owner, repo, "textures").then((result) => {
+            this.fetchDetails(owner, repo).then((result) => {
                 res.status(200).json(result);
             }).catch((error) => {
                 res.status(400).json({ message: `${repo} is not a mod!` });
