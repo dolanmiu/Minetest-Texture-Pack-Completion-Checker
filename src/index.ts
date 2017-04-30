@@ -1,4 +1,5 @@
 import * as logger from "winston";
+import { AwardsRouter } from "./api/awards";
 import { FarmingRouter } from "./api/farming";
 import { TexturePackRouter } from "./api/texture-pack";
 import { ApplicationWrapper } from "./bootstrap/application-wrapper";
@@ -20,6 +21,7 @@ appWrapper.configure((app) => {
     logger.info("Configuring application routes");
     app.use("/", new TexturePackRouter(repoFileFetcher).router);
     app.use("/farming", new FarmingRouter(repoFileFetcher).router);
+    app.use("/awards", new AwardsRouter(repoFileFetcher).router);
 });
 
 appWrapper.start();
