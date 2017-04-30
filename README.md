@@ -61,4 +61,20 @@ https://minetest-checker.herokuapp.com/nether/<OWNER>/<REPO>
 https://minetest-checker.herokuapp.com/nether/<OWNER>/<REPO>.svg
 ```
 
+## Dynamic Mod Checking
+
+This will enable checking of **every** mod. However, it is slower because there is no caching involved. It does all the computation when requested. If possible, use the above!
+
+#### To get information and details about the repo
+
+```url
+https://minetest-checker.herokuapp.com/mod/<MOD-OWNER>/<MOD-REPO>/<OWNER>/<REPO>
+```
+
+#### To get a pretty badge for the repo
+
+```url
+https://minetest-checker.herokuapp.com/mod/<MOD-OWNER>/<MOD-REPO>/<OWNER>/<REPO>.svg
+```
+
 Made with ❤️ by Dolan Miu
