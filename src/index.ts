@@ -1,6 +1,7 @@
 import * as logger from "winston";
 import { AwardsRouter } from "./api/awards";
 import { FarmingRouter } from "./api/farming";
+import { NetherRouter } from "./api/nether";
 import { TexturePackRouter } from "./api/texture-pack";
 import { ApplicationWrapper } from "./bootstrap/application-wrapper";
 import { DevelopmentConfig, ProductionConfig } from "./config/index";
@@ -22,6 +23,7 @@ appWrapper.configure((app) => {
     app.use("/", new TexturePackRouter(repoFileFetcher).router);
     app.use("/farming", new FarmingRouter(repoFileFetcher).router);
     app.use("/awards", new AwardsRouter(repoFileFetcher).router);
+    app.use("/nether", new NetherRouter(repoFileFetcher).router);
 });
 
 appWrapper.start();
