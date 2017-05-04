@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import * as request from "request";
 import { ReferenceRepo, RepoFileFetcher } from "../../github";
+import { ColorConverter } from "../color-converter";
 
 export class NetherRouter {
     public router: Router;
@@ -24,7 +25,8 @@ export class NetherRouter {
             const repo = req.params.repo as string;
 
             this.fetchDetails(owner, repo).then((result) => {
-                request(`https://img.shields.io/badge/farming%20mod%20completion-${result.percentage}%25-green.svg`).pipe(res);
+                const color = ColorConverter.percentageToHexColor(result.percentage);
+                request(`https://img.shields.io/badge/nether%20completion-${result.percentage}%25-${color}.svg`).pipe(res);
             }).catch((error) => {
                 res.status(400).json({ message: `${repo} is not a mod!` });
             });

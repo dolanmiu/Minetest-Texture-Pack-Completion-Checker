@@ -1,6 +1,7 @@
 import { Request, Response, Router } from "express";
 import * as request from "request";
 import { ReferenceRepo, RepoFileFetcher } from "../../github";
+import { ColorConverter } from "../color-converter";
 
 export class ModRouter {
     public router: Router;
@@ -18,7 +19,9 @@ export class ModRouter {
             const repo = req.params.repo as string;
 
             this.fetchDetails(modOwner, modRepo, owner, repo).then((result) => {
-                request(`https://img.shields.io/badgea/wards%20mod%20completion-${result.percentage}%25-green.svg`).pipe(res);
+                const displayName = modRepo.replace("minetest-", "");
+                const color = ColorConverter.percentageToHexColor(result.percentage);
+                request(`https://img.shields.io/badge/${displayName}-${result.percentage}%25-${color}.svg`).pipe(res);
             }).catch((error) => {
                 res.status(400).json({ message: `${repo} is not a mod!` });
             });
