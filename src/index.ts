@@ -1,5 +1,6 @@
 import * as logger from "winston";
 import { AwardsRouter } from "./api/awards";
+import { CoreRouter } from "./api/core";
 import { FarmingRouter } from "./api/farming";
 import { ModRouter } from "./api/mod";
 import { NetherRouter } from "./api/nether";
@@ -26,6 +27,7 @@ appWrapper.configure((app) => {
     app.use("/awards", new AwardsRouter(repoFileFetcher).router);
     app.use("/nether", new NetherRouter(repoFileFetcher).router);
     app.use("/mod", new ModRouter(repoFileFetcher).router);
+    app.use("/core", new CoreRouter(repoFileFetcher).router);
 });
 
 appWrapper.start();
