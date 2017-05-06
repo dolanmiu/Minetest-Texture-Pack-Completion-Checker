@@ -20,7 +20,7 @@ export class CoreRouter {
 
             this.fetchDetails(owner, repo).then((result) => {
                 const color = ColorConverter.percentageToHexColor(result.percentage);
-                request(`https://img.shields.io/badge/wards%20mod%20completion-${result.percentage}%25-${color}.svg`).pipe(res);
+                request(`https://img.shields.io/badgeminetest core-${result.percentage}%25-${color}.svg`).pipe(res);
             }).catch((error) => {
                 res.status(400).json({ message: `${repo} is not a mod!` });
             });
