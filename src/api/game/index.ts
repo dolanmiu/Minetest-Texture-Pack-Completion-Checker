@@ -4,7 +4,7 @@ import { RepoFileFetcher } from "../../github";
 import { ColorConverter } from "../color-converter";
 import { CORE_FILES } from "./core-files";
 
-export class CoreRouter {
+export class GameRouter {
     public router: Router;
 
     constructor(private repoFileFetcher: RepoFileFetcher) {
@@ -20,7 +20,7 @@ export class CoreRouter {
 
             this.fetchDetails(owner, repo).then((result) => {
                 const color = ColorConverter.percentageToHexColor(result.percentage);
-                request(`https://img.shields.io/badge/minetest core-${result.percentage}%25-${color}.svg`).pipe(res);
+                request(`https://img.shields.io/badge/minetest game-${result.percentage}%25-${color}.svg`).pipe(res);
             }).catch((error) => {
                 res.status(400).json({ message: `${repo} is not a mod!` });
             });

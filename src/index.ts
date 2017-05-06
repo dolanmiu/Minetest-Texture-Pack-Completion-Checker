@@ -2,6 +2,7 @@ import * as logger from "winston";
 import { AwardsRouter } from "./api/awards";
 import { CoreRouter } from "./api/core";
 import { FarmingRouter } from "./api/farming";
+import { GameRouter } from "./api/game";
 import { ModRouter } from "./api/mod";
 import { NetherRouter } from "./api/nether";
 import { TexturePackRouter } from "./api/texture-pack";
@@ -28,6 +29,7 @@ appWrapper.configure((app) => {
     app.use("/nether", new NetherRouter(repoFileFetcher).router);
     app.use("/mod", new ModRouter(repoFileFetcher).router);
     app.use("/core", new CoreRouter(repoFileFetcher).router);
+    app.use("/game", new GameRouter(repoFileFetcher).router);
 });
 
 appWrapper.start();
