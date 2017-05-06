@@ -3,7 +3,9 @@
 # How to use
 
 ## Normal Checking
-At the moment, it checks against the well reknowned `Summerfields` texture pack.
+You can check against the well reknowned `Summerfields` texture pack, or check against `minetest-core` and `minetest-game` texture lists. The latter is preferred over testing over `Summerfields`.
+
+### Test against Summerfields
 
 #### To get information and details about the repo
 
@@ -15,6 +17,34 @@ https://minetest-checker.herokuapp.com/<OWNER>/<REPO>
 
 ```url
 https://minetest-checker.herokuapp.com/<OWNER>/<REPO>.svg
+```
+
+### Test against `minetest-game` [static texture list](src/api/game/core-files.ts)
+
+#### To get information and details about the repo
+
+```url
+https://minetest-checker.herokuapp.com/game/<OWNER>/<REPO>
+```
+
+#### To get a pretty badge for the repo
+
+```url
+https://minetest-checker.herokuapp.com/game/<OWNER>/<REPO>.svg
+```
+
+### Test against `minetest-core` [static texture list](src/api/core/core-files.ts)
+
+#### To get information and details about the repo
+
+```url
+https://minetest-checker.herokuapp.com/core/<OWNER>/<REPO>
+```
+
+#### To get a pretty badge for the repo
+
+```url
+https://minetest-checker.herokuapp.com/core/<OWNER>/<REPO>.svg
 ```
 
 ## Mod Checking
