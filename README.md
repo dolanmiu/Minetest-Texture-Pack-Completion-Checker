@@ -3,7 +3,7 @@
 # How to use
 
 ## Normal Checking
-You can check against the well reknowned `Summerfields` texture pack, or check against `minetest-core` and `minetest-game` texture lists. The latter is preferred over testing over `Summerfields`.
+You can check against the well reknowned `Summerfields` texture pack, or check against [`minetest-core`](src/api/game/core-files.ts) and [`minetest-game`](src/api/game/core-files.ts) texture lists. The latter is preferred over testing over `Summerfields`.
 
 ### Test against Summerfields
 
